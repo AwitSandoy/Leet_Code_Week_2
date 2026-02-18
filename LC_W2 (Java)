@@ -1,0 +1,40 @@
+class Solution {
+    boolean isPalindrome(int x) {
+            if (x < 0) {
+            return false;   //  End early if a negative input is entered.
+        }
+        
+        int digitCounter = 0, tempWholeNum = x;
+    //  Count how many digits does the inputted whole number currently have.
+        while (tempWholeNum > 0) {
+            tempWholeNum /= 10;
+            digitCounter++;
+        }
+   //  Assign x's individual digits to an integer-type array.
+        int size = digitCounter;
+        int[] Array = new int[size];
+        
+        for (int index = (size - 1); index >= 0; index--) {
+            Array[index] = x % 10;
+            x /= 10;
+        }
+
+    //  Palindrome checking between left and right indices of the array.
+        boolean ConfirmPalindrome = true;
+        
+        int left = 0, right = (size - 1);
+        for (; left < size && right >= 0; left++, right--) {
+            if (Array[left] != Array[right]) {
+                ConfirmPalindrome = false;
+                break;
+            }
+        }
+        
+    //  Final check before palindrome confirmation.
+        if (ConfirmPalindrome) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
