@@ -1,0 +1,45 @@
+class Solution {
+public:
+    bool isPalindrome(int x) {
+            if (x < 0) {
+            return false;   //  End early if a negative input is entered.
+        }
+        
+        int digitCounter = 0, tempWholeNum = x;
+    //  Count how many digits does the inputted whole number currently have.
+        while(tempWholeNum) {
+            tempWholeNum /= 10;
+            digitCounter++;
+        }
+        
+    //   Assign x's digits to an Array.
+        int size = digitCounter;
+
+//  Note: Standard arrays (int arr[n]) try to allocate memory on the stack, which requires the size to be known when the code is compiled. vector allocates memory on the heap, which is designed for sizes that change at runtime.
+        vector<int> Array(size, 0);
+    //  Array[size] = {};
+
+        for (int index = size - 1; index >= 0; index--) {
+            Array[index] = x % 10;
+            x /= 10;
+        }
+
+    //  Palindrome checking between left and right indices of the array.
+        bool ConfirmPalindrome = true;
+        
+        int left = 0, right = (size - 1);
+        for (; left < size && right >= 0; left++, right--) {
+            if (Array[left] != Array[right]) {
+                ConfirmPalindrome = false;
+                break;
+            }
+        }
+        
+    //  Final check before palindrome confirmation.
+        if (ConfirmPalindrome) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+};
