@@ -11,8 +11,7 @@ public:
             tempWholeNum /= 10;
             digitCounter++;
         }
-        
-    //   Assign x's digits to an Array.
+
         int size = digitCounter;
 
 //  Note: Standard arrays (int arr[n]) try to allocate memory on the stack, which requires the size to be known when the code is compiled. vector allocates memory on the heap, which is designed for sizes that change at runtime.
